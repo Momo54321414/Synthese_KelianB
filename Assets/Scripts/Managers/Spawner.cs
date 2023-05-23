@@ -6,9 +6,10 @@ public class Spawner : MonoBehaviour
 {
     // Initialisation des variables.
 
+    [SerializeField] private GameObject container = default;
     [SerializeField] private GameObject buff_HP = default;
-    [SerializeField] private GameObject enemy = default;
     [SerializeField] private GameObject waveUI = default;
+    [SerializeField] private GameObject enemy = default;
     [SerializeField] private Text waveTxt = default;
 
     private float spawnCD = 2f;
@@ -31,7 +32,8 @@ public class Spawner : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(spawnCD - 0.2f, spawnCD + 0.2f));
             Vector3 pos = new Vector3(10f, Random.Range(-4f, 1.5f), 0f);
-            Instantiate(enemy, pos, Quaternion.identity);
+            GameObject newEnemy = Instantiate(enemy, pos, Quaternion.identity);
+            newEnemy.transform.parent = container.transform;
         }
     }
 
