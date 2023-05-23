@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     private bool isDead;
     private UI UI;
 
-    // Initialisation de variables et donner une vitesse aléatoire à l'ennemi.
+    // Initialisation de variables et donner une vitesse aléatoire à l'ennemi, et détruire l'ennemi lorsqu'il sort de l'écran.
 
     void Start()
     {
@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
         anim = GetComponent<Animator>();
         speed = Random.Range(2.5f, 4f);
         UI = FindObjectOfType<UI>();
+        Destroy(gameObject, 8f);
     }
 
     // Faire bouger l'ennemi à vitesse constance vers la gauche, tant qu'il n'est pas mort.
